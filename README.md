@@ -19,7 +19,26 @@ cd guacamole-docker-compose
 docker-compose up -d
 ~~~
 
-Your guacamole server should now be available at `https://ip of your server:8443/`. The default username is `guacadmin` with password `guacadmin`.
+Your guacamole server should now be available at `http://ip of your server:8080/guacamole`. The default username is `guacadmin` with password `guacadmin`.
+
+## Configure VNC clients
+1. Open `http://ip of your server:8080/guacamole` and login with the proper user and password
+2. Select the username in the top right corner and click `settings`
+3. Click on `Connections` tab
+4. Create new connection
+  - Important values:
+    - Name: some name for the connection (is the one that is displayed when logging in)
+    - Location: ROOT (by default)
+    - Concurrency limits: set how many clients can connect to the same device
+    - Network -> Hostname: IP address of the device
+    - Network -> Port: TCP port of the VNC device
+    - Authentication: if any
+5. Click `Save`
+
+## Connect to a VNC client
+1. Open `http://ip of your server:8080/guacamole` and login with the proper user and password
+2. Select the device from the list
+3. Wait for connection
 
 ## Details
 To understand some details let's take a closer look at parts of the `docker-compose.yml` file:
@@ -105,7 +124,7 @@ The following part of docker-compose.yml will create an instance of guacamole by
 ...
 ~~~
 
-#### nginx
+#### nginx (optional)
 The following part of docker-compose.yml will create an instance of nginx that maps the public port 8443 to the internal port 443. The internal port 443 is then mapped to guacamole using the `./nginx/templates/guacamole.conf.template` file. The container will use the previously generated (`prepare.sh`) self-signed certificate in `./nginx/ssl/` with `./nginx/ssl/self-ssl.key` and `./nginx/ssl/self.cert`.
 
 ~~~python
