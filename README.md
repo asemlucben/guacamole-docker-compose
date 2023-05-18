@@ -9,7 +9,7 @@ It supports RDP, SSH, Telnet and VNC and is the fastest HTML5 gateway I know. Ch
 ## Prerequisites
 You need a working **docker** installation and **docker-compose** running on your machine.
 
-## Quick start
+# Quick start
 Clone the GIT repository and start guacamole:
 
 ~~~bash
@@ -40,7 +40,7 @@ Your guacamole server should now be available at `http://ip of your server:8080/
 2. Select the device from the list
 3. Wait for connection
 
-## Details
+# Details
 To understand some details let's take a closer look at parts of the `docker-compose.yml` file:
 
 ### Networking
